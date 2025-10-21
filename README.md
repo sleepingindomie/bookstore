@@ -7,7 +7,6 @@
 [![PHP Version](https://img.shields.io/badge/PHP-8.3%2B-777BB4?style=flat-square&logo=php)](https://www.php.net/)
 [![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=flat-square&logo=laravel)](https://laravel.com)
 [![MySQL](https://img.shields.io/badge/MySQL-5.7%2B-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://www.mysql.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
 [Features](#-features) • [Installation](#-installation) • [API Documentation](#-api-documentation)
 
@@ -32,11 +31,7 @@
 - [Database Structure](#-database-structure)
 - [Usage Guide](#-usage-guide)
 - [API Documentation](#-api-documentation)
-- [Testing](#-testing)
-- [Troubleshooting](#-troubleshooting)
-- [Performance](#-performance)
 - [Contributing](#-contributing)
-- [License](#-license)
 
 ---
 
@@ -267,11 +262,6 @@ php artisan serve
 └─────────────────────────────────────┘
 ```
 
-**Performance Optimizations:**
-- ⚡ Denormalized columns for faster queries
-- 📊 Strategic indexes on frequently queried columns
-- 🔍 Composite index on `(book_id, rating)`
-
 </details>
 
 ---
@@ -380,96 +370,9 @@ curl -X POST http://localhost:8000/api/ratings \
 
 ---
 
-### ✅ Testing
-
-<details>
-<summary><b>Manual Testing Checklist</b></summary>
-
-**Web Interface:**
-- [ ] Homepage loads successfully
-- [ ] Search filters books correctly
-- [ ] Pagination works
-- [ ] Top authors page displays
-- [ ] Rating form:
-  - [ ] Author dropdown loads
-  - [ ] Book dropdown auto-populates
-  - [ ] Rating buttons work
-  - [ ] Validation functions
-  - [ ] Success message shows
-- [ ] Mobile responsive design works
-- [ ] Animations are smooth
-
-**API:**
-- [ ] All endpoints return valid JSON
-- [ ] Pagination works correctly
-- [ ] Search filters properly
-- [ ] API documentation accessible
-- [ ] POST endpoints validate input
-
-</details>
-
-<details>
-<summary><b>Performance Testing</b></summary>
-
-**Benchmark Homepage:**
-```bash
-curl -w "\nTime: %{time_total}s\n" http://localhost:8000 -o /dev/null -s
-```
-
-**Benchmark API:**
-```bash
-curl -w "\nTime: %{time_total}s\n" http://localhost:8000/api/books?per_page=10 -o /dev/null -s
-```
-
-**Expected Results:**
-- ✅ Homepage: < 0.2 seconds
-- ✅ API: < 0.15 seconds
-
-</details>
-
----
-
-### 🔧 Troubleshooting
-
-<details>
-<summary><b>Common Issues & Solutions</b></summary>
-
-| Issue | Solution |
-|-------|----------|
-| 🐌 **Seeding is slow** | Normal. 500K records take 3-5 minutes. Watch progress in console. |
-| 🚫 **API returns 404** | Check `bootstrap/app.php` includes `api: __DIR__.'/../routes/api.php'` |
-| 🎨 **Styles not loading** | Ensure internet connection for Tailwind CDN |
-| ⚡ **Slow performance** | Run `php artisan migrate:status` to verify indexes |
-| 🔄 **AJAX not working** | Check browser console. Verify `/authors/{id}/books` route |
-
-</details>
-
----
-
-### ⚡ Performance
-
-**Optimizations Implemented:**
-- 🚀 Denormalized aggregate data
-- 📊 Strategic database indexing
-- 🔄 Efficient batch inserts (5000 records/batch)
-- 💾 No caching required (optimized queries)
-
-**Load Times:**
-- Homepage: **~150ms**
-- API Endpoint: **~130ms**
-- Top Authors: **~900ms**
-
----
-
 ### 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
-
----
-
-### 📄 License
-
-This project is licensed under the MIT License.
 
 ---
 
@@ -496,11 +399,7 @@ Built with:
 - [Struktur Database](#-struktur-database)
 - [Panduan Penggunaan](#-panduan-penggunaan)
 - [Dokumentasi API](#-dokumentasi-api)
-- [Pengujian](#-pengujian)
-- [Troubleshooting](#-troubleshooting)
-- [Performa](#-performa)
 - [Kontribusi](#-kontribusi)
-- [Lisensi](#-lisensi)
 
 ---
 
@@ -731,11 +630,6 @@ php artisan serve
 └─────────────────────────────────────┘
 ```
 
-**Optimasi Performa:**
-- ⚡ Kolom denormalisasi untuk query lebih cepat
-- 📊 Index strategis pada kolom yang sering di-query
-- 🔍 Composite index pada `(book_id, rating)`
-
 </details>
 
 ---
@@ -844,96 +738,9 @@ curl -X POST http://localhost:8000/api/ratings \
 
 ---
 
-### ✅ Pengujian
-
-<details>
-<summary><b>Checklist Pengujian Manual</b></summary>
-
-**Antarmuka Web:**
-- [ ] Homepage berhasil dimuat
-- [ ] Pencarian memfilter buku dengan benar
-- [ ] Pagination berfungsi
-- [ ] Halaman top authors tampil
-- [ ] Form rating:
-  - [ ] Dropdown penulis terisi
-  - [ ] Dropdown buku auto-populate
-  - [ ] Tombol rating berfungsi
-  - [ ] Validasi bekerja
-  - [ ] Pesan sukses muncul
-- [ ] Desain responsif mobile berfungsi
-- [ ] Animasi berjalan lancar
-
-**API:**
-- [ ] Semua endpoint mengembalikan JSON valid
-- [ ] Pagination bekerja dengan benar
-- [ ] Pencarian memfilter dengan tepat
-- [ ] Dokumentasi API dapat diakses
-- [ ] POST endpoint memvalidasi input
-
-</details>
-
-<details>
-<summary><b>Pengujian Performa</b></summary>
-
-**Benchmark Homepage:**
-```bash
-curl -w "\nWaktu: %{time_total}s\n" http://localhost:8000 -o /dev/null -s
-```
-
-**Benchmark API:**
-```bash
-curl -w "\nWaktu: %{time_total}s\n" http://localhost:8000/api/books?per_page=10 -o /dev/null -s
-```
-
-**Hasil yang Diharapkan:**
-- ✅ Homepage: < 0,2 detik
-- ✅ API: < 0,15 detik
-
-</details>
-
----
-
-### 🔧 Troubleshooting
-
-<details>
-<summary><b>Masalah Umum & Solusi</b></summary>
-
-| Masalah | Solusi |
-|---------|--------|
-| 🐌 **Seeding lambat** | Normal. 500K record butuh 3-5 menit. Lihat progress di console. |
-| 🚫 **API return 404** | Cek `bootstrap/app.php` sudah include `api: __DIR__.'/../routes/api.php'` |
-| 🎨 **Style tidak muncul** | Pastikan koneksi internet untuk Tailwind CDN |
-| ⚡ **Performa lambat** | Jalankan `php artisan migrate:status` untuk verifikasi indexes |
-| 🔄 **AJAX tidak bekerja** | Cek browser console. Verifikasi route `/authors/{id}/books` |
-
-</details>
-
----
-
-### ⚡ Performa
-
-**Optimasi yang Diterapkan:**
-- 🚀 Data agregat yang denormalisasi
-- 📊 Indexing database strategis
-- 🔄 Batch insert efisien (5000 record/batch)
-- 💾 Tidak memerlukan caching (query teroptimasi)
-
-**Waktu Load:**
-- Homepage: **~150ms**
-- API Endpoint: **~130ms**
-- Top Authors: **~900ms**
-
----
-
 ### 🤝 Kontribusi
 
 Kontribusi sangat diterima! Silakan submit Pull Request.
-
----
-
-### 📄 Lisensi
-
-Proyek ini dilisensikan di bawah MIT License.
 
 ---
 
