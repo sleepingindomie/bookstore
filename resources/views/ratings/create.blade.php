@@ -29,28 +29,6 @@
       background: #3a3d54;
     }
 
-    /* Rating buttons */
-    .rating-btn {
-      background: #3a3d54;
-      border: 1px solid #8d99ae;
-      color: #b7c9c3;
-      transition: all 0.15s ease;
-      cursor: pointer;
-    }
-
-    .rating-btn:hover {
-      border-color: #b7c9c3;
-      color: #edf2f4;
-      transform: scale(1.05);
-    }
-
-    .rating-btn.selected {
-      background: #b7c9c3;
-      border-color: #b7c9c3;
-      color: #2b2d42;
-      font-weight: 500;
-    }
-
     /* Button */
     .btn-primary {
       background: #b7c9c3;
@@ -124,17 +102,6 @@
         padding: 1.5rem !important;
       }
 
-      /* Rating buttons grid - 5 columns on mobile */
-      .rating-grid {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 0.5rem;
-      }
-
-      .rating-btn {
-        padding: 0.75rem 0.25rem !important;
-        font-size: 0.875rem;
-      }
-
       /* Touch-friendly form inputs */
       .form-input,
       .form-select {
@@ -157,25 +124,6 @@
       .container-responsive {
         padding-left: 1rem;
         padding-right: 1rem;
-      }
-
-      /* Rating label */
-      #rating-label {
-        font-size: 0.875rem;
-      }
-    }
-
-    /* Tablet (640px - 768px) */
-    @media (min-width: 641px) and (max-width: 768px) {
-      .rating-grid {
-        grid-template-columns: repeat(5, 1fr);
-      }
-    }
-
-    /* Desktop (769px+) */
-    @media (min-width: 769px) {
-      .rating-grid {
-        grid-template-columns: repeat(5, 1fr);
       }
     }
   </style>
@@ -248,26 +196,21 @@
         </div>
 
         <!-- Rating Selection -->
-        <div class="mb-8">
-          <label class="block text-sm font-medium text-gray-300 mb-3">Rating (1-10)</label>
-
-          <div class="grid grid-cols-5 gap-2 mb-3 rating-grid">
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-300 mb-2">Rating (1-10)</label>
+          <select
+            id="rating"
+            name="rating"
+            class="form-select w-full px-4 py-2 rounded-md"
+            required
+          >
+            <option value="">Select rating</option>
             @for($i = 1; $i <= 10; $i++)
-              <button
-                type="button"
-                class="rating-btn px-4 py-3 rounded-md font-medium"
-                data-rating="{{ $i }}"
-              >
-                {{ $i }}
-              </button>
+              <option value="{{ $i }}">{{ $i }}</option>
             @endfor
-          </div>
-
-          <input type="hidden" name="rating" id="rating-input" value="" required>
-          <p id="rating-label" class="text-sm text-white text-center">Select a rating from 1 (poor) to 10 (excellent)</p>
-
+          </select>
           @error('rating')
-            <p class="text-red-400 text-sm mt-2 text-center">{{ $message }}</p>
+            <p class="text-red-400 text-sm mt-2">{{ $message }}</p>
           @enderror
         </div>
 
@@ -303,35 +246,6 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Rating selection
-      function selectRating(rating) {
-        document.getElementById('rating-input').value = rating;
-
-        // Update button states
-        const buttons = document.querySelectorAll('.rating-btn');
-        buttons.forEach(btn => {
-          const btnRating = parseInt(btn.dataset.rating);
-          if (btnRating === rating) {
-            btn.classList.add('selected');
-          } else {
-            btn.classList.remove('selected');
-          }
-        });
-
-        // Update label
-        const labels = ['', 'Poor', 'Bad', 'Below Average', 'Average', 'Decent', 'Good', 'Very Good', 'Great', 'Excellent', 'Masterpiece'];
-        document.getElementById('rating-label').innerHTML = '<span class="text-white font-medium">' + rating + '/10</span> <span class="text-gray-500">\u2014 ' + labels[rating] + '</span>';
-      }
-
-      // Add click event listeners to rating buttons
-      const ratingButtons = document.querySelectorAll('.rating-btn');
-      ratingButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const rating = parseInt(this.dataset.rating);
-          selectRating(rating);
-        });
-      });
-
       // Author selection - Load books via AJAX
       document.getElementById('author').addEventListener('change', async function() {
         const authorId = this.value;
@@ -344,7 +258,6 @@
           return;
         }
 
-        // Show loading
         loadingIndicator.classList.remove('hidden');
         bookSelect.disabled = true;
         bookSelect.innerHTML = '<option value="">Loading books...</option>';
@@ -372,16 +285,6 @@
           console.error('Error:', error);
         } finally {
           loadingIndicator.classList.add('hidden');
-        }
-      });
-
-      // Form validation
-      document.getElementById('rating-form').addEventListener('submit', function(e) {
-        const rating = document.getElementById('rating-input').value;
-        if (!rating) {
-          e.preventDefault();
-          alert('Please select a rating');
-          return false;
         }
       });
     });

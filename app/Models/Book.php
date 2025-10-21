@@ -15,7 +15,8 @@ class Book extends Model
         'author_id',
         'category_id',
         'title',
-        // 'average_rating' dan 'voter_count' akan diupdate oleh sistem, jadi tidak perlu di fillable
+        'average_rating',
+        'voter_count',
     ];
 
     /**

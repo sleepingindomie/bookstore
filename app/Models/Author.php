@@ -10,12 +10,9 @@ class Author extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     * Kita hanya perlu 'name' karena 'total_high_ratings' akan diupdate oleh sistem.
-     */
     protected $fillable = [
         'name',
+        'total_high_ratings',
     ];
 
     /**

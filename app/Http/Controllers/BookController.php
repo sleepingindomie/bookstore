@@ -68,11 +68,32 @@ class BookController extends Controller
             'rating'  => $data['rating'],
         ]);
 
+        $book = Book::find($data['book_id']);
+
+        $stats = Rating::where('book_id', $data['book_id'])
+            ->selectRaw('COUNT(*) as voter_count, AVG(rating) as average_rating')
+            ->first();
+
+        $book->update([
+            'voter_count' => $stats->voter_count,
+            'average_rating' => $stats->average_rating,
+        ]);
+
+        $authorHighRatings = Rating::join('books', 'ratings.book_id', '=', 'books.id')
+            ->where('books.author_id', $book->author_id)
+            ->where('ratings.rating', '>', 5)
+            ->count();
+
+        Author::where('id', $book->author_id)->update([
+            'total_high_ratings' => $authorHighRatings,
+        ]);
+
         return redirect()->route('home')->with('success', 'Rating berhasil disimpan.');
     }
 
     public function booksByAuthor(Author $author)
     {
-        return $author->books()->select('id','title')->orderBy('title')->get();
+        $books = $author->books()->select('id','title')->orderBy('title')->get();
+        return response()->json($books);
     }
 }
