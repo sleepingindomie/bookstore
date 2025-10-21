@@ -257,7 +257,6 @@
                 type="button"
                 class="rating-btn px-4 py-3 rounded-md font-medium"
                 data-rating="{{ $i }}"
-                onclick="selectRating({{ $i }})"
               >
                 {{ $i }}
               </button>
@@ -303,77 +302,88 @@
   </div>
 
   <script>
-    // Rating selection
-    function selectRating(rating) {
-      document.getElementById('rating-input').value = rating;
+    document.addEventListener('DOMContentLoaded', function() {
+      // Rating selection
+      function selectRating(rating) {
+        document.getElementById('rating-input').value = rating;
 
-      // Update button states
-      const buttons = document.querySelectorAll('.rating-btn');
-      buttons.forEach(btn => {
-        const btnRating = parseInt(btn.dataset.rating);
-        if (btnRating === rating) {
-          btn.classList.add('selected');
-        } else {
-          btn.classList.remove('selected');
+        // Update button states
+        const buttons = document.querySelectorAll('.rating-btn');
+        buttons.forEach(btn => {
+          const btnRating = parseInt(btn.dataset.rating);
+          if (btnRating === rating) {
+            btn.classList.add('selected');
+          } else {
+            btn.classList.remove('selected');
+          }
+        });
+
+        // Update label
+        const labels = ['', 'Poor', 'Bad', 'Below Average', 'Average', 'Decent', 'Good', 'Very Good', 'Great', 'Excellent', 'Masterpiece'];
+        document.getElementById('rating-label').innerHTML = '<span class="text-white font-medium">' + rating + '/10</span> <span class="text-gray-500">\u2014 ' + labels[rating] + '</span>';
+      }
+
+      // Add click event listeners to rating buttons
+      const ratingButtons = document.querySelectorAll('.rating-btn');
+      ratingButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const rating = parseInt(this.dataset.rating);
+          selectRating(rating);
+        });
+      });
+
+      // Author selection - Load books via AJAX
+      document.getElementById('author').addEventListener('change', async function() {
+        const authorId = this.value;
+        const bookSelect = document.getElementById('book');
+        const loadingIndicator = document.getElementById('book-loading');
+
+        if (!authorId) {
+          bookSelect.disabled = true;
+          bookSelect.innerHTML = '<option value="">Select an author first</option>';
+          return;
+        }
+
+        // Show loading
+        loadingIndicator.classList.remove('hidden');
+        bookSelect.disabled = true;
+        bookSelect.innerHTML = '<option value="">Loading books...</option>';
+
+        try {
+          const response = await fetch('/authors/' + authorId + '/books');
+          const books = await response.json();
+
+          bookSelect.innerHTML = '<option value="">Select a book</option>';
+
+          if (books.length === 0) {
+            bookSelect.innerHTML += '<option value="" disabled>No books found</option>';
+          } else {
+            books.forEach(book => {
+              const option = document.createElement('option');
+              option.value = book.id;
+              option.textContent = book.title;
+              bookSelect.appendChild(option);
+            });
+          }
+
+          bookSelect.disabled = false;
+        } catch (error) {
+          bookSelect.innerHTML = '<option value="">Error loading books</option>';
+          console.error('Error:', error);
+        } finally {
+          loadingIndicator.classList.add('hidden');
         }
       });
 
-      // Update label
-      const labels = ['', 'Poor', 'Bad', 'Below Average', 'Average', 'Decent', 'Good', 'Very Good', 'Great', 'Excellent', 'Masterpiece'];
-      document.getElementById('rating-label').innerHTML = `<span class="text-white font-medium">${rating}/10</span> <span class="text-gray-500">— ${labels[rating]}</span>`;
-    }
-
-    // Author selection - Load books via AJAX
-    document.getElementById('author').addEventListener('change', async function() {
-      const authorId = this.value;
-      const bookSelect = document.getElementById('book');
-      const loadingIndicator = document.getElementById('book-loading');
-
-      if (!authorId) {
-        bookSelect.disabled = true;
-        bookSelect.innerHTML = '<option value="">Select an author first</option>';
-        return;
-      }
-
-      // Show loading
-      loadingIndicator.classList.remove('hidden');
-      bookSelect.disabled = true;
-      bookSelect.innerHTML = '<option value="">Loading books...</option>';
-
-      try {
-        const response = await fetch(`/authors/${authorId}/books`);
-        const books = await response.json();
-
-        bookSelect.innerHTML = '<option value="">Select a book</option>';
-
-        if (books.length === 0) {
-          bookSelect.innerHTML += '<option value="" disabled>No books found</option>';
-        } else {
-          books.forEach(book => {
-            const option = document.createElement('option');
-            option.value = book.id;
-            option.textContent = book.title;
-            bookSelect.appendChild(option);
-          });
+      // Form validation
+      document.getElementById('rating-form').addEventListener('submit', function(e) {
+        const rating = document.getElementById('rating-input').value;
+        if (!rating) {
+          e.preventDefault();
+          alert('Please select a rating');
+          return false;
         }
-
-        bookSelect.disabled = false;
-      } catch (error) {
-        bookSelect.innerHTML = '<option value="">Error loading books</option>';
-        console.error('Error:', error);
-      } finally {
-        loadingIndicator.classList.add('hidden');
-      }
-    });
-
-    // Form validation
-    document.getElementById('rating-form').addEventListener('submit', function(e) {
-      const rating = document.getElementById('rating-input').value;
-      if (!rating) {
-        e.preventDefault();
-        alert('Please select a rating');
-        return false;
-      }
+      });
     });
   </script>
 </body>

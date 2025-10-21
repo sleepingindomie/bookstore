@@ -9,7 +9,7 @@
 [![MySQL](https://img.shields.io/badge/MySQL-5.7%2B-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://www.mysql.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
-[Features](#-features) • [Installation](#-installation) • [API Documentation](#-api-documentation) • [Screenshots](#-screenshots)
+[Features](#-features) • [Installation](#-installation) • [API Documentation](#-api-documentation)
 
 ---
 
