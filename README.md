@@ -295,16 +295,26 @@ php artisan serve
 
 ### 🔌 API Documentation
 
+**📖 View Online Documentation:**
+- 🌐 **[Interactive API Docs](https://yourusername.github.io/bookstore/)** - Browse API endpoints with try-it-out feature
+- 📮 **[Postman Collection](https://yourusername.github.io/bookstore/collection.json)** - Download for Postman/Insomnia
+- 📋 **[OpenAPI/Swagger](https://yourusername.github.io/bookstore/openapi.yaml)** - OpenAPI 3.0 specification
+
+> **Note:** Replace `yourusername` with your actual GitHub username after deploying
+
 <details>
-<summary><b>Access API Docs</b></summary>
+<summary><b>Setup GitHub Pages (for maintainers)</b></summary>
 
-**Interactive Documentation:**
-🌐 `http://localhost:8000/docs`
+After pushing to GitHub, enable GitHub Pages:
 
-**Available Formats:**
-- 📄 HTML (interactive)
-- 📋 OpenAPI/Swagger YAML
-- 📮 Postman Collection JSON
+1. Go to repository **Settings** → **Pages**
+2. Under **Source**, select **Deploy from a branch**
+3. Select branch **main** and folder **/docs**
+4. Click **Save**
+5. Wait 1-2 minutes, your docs will be available at:
+   `https://yourusername.github.io/repositoryname/`
+
+Documentation files are auto-generated in the `/docs` folder.
 
 </details>
 
@@ -663,16 +673,26 @@ php artisan serve
 
 ### 🔌 Dokumentasi API
 
+**📖 Lihat Dokumentasi Online:**
+- 🌐 **[Dokumentasi API Interaktif](https://yourusername.github.io/bookstore/)** - Jelajahi endpoint API dengan fitur try-it-out
+- 📮 **[Postman Collection](https://yourusername.github.io/bookstore/collection.json)** - Download untuk Postman/Insomnia
+- 📋 **[OpenAPI/Swagger](https://yourusername.github.io/bookstore/openapi.yaml)** - Spesifikasi OpenAPI 3.0
+
+> **Catatan:** Ganti `yourusername` dengan username GitHub Anda setelah deploy
+
 <details>
-<summary><b>Akses Dokumentasi API</b></summary>
+<summary><b>Setup GitHub Pages (untuk maintainer)</b></summary>
 
-**Dokumentasi Interaktif:**
-🌐 `http://localhost:8000/docs`
+Setelah push ke GitHub, aktifkan GitHub Pages:
 
-**Format yang Tersedia:**
-- 📄 HTML (interaktif)
-- 📋 OpenAPI/Swagger YAML
-- 📮 Postman Collection JSON
+1. Buka **Settings** repository → **Pages**
+2. Di bagian **Source**, pilih **Deploy from a branch**
+3. Pilih branch **main** dan folder **/docs**
+4. Klik **Save**
+5. Tunggu 1-2 menit, dokumentasi akan tersedia di:
+   `https://yourusername.github.io/repositoryname/`
+
+File dokumentasi otomatis di-generate di folder `/docs`.
 
 </details>
 
