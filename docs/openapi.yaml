@@ -14,6 +14,9 @@ tags:
     name: Books
     description: "\nAPIs for managing books"
   -
+    name: Endpoints
+    description: ''
+  -
     name: Ratings
     description: "\nAPIs for managing book ratings"
 paths:
@@ -401,6 +404,28 @@ paths:
         required: true
         schema:
           type: integer
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The route bookstore/public/api/user could not be found.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The route bookstore/public/api/user could not be found.'
+      tags:
+        - Endpoints
+      security: []
   /api/ratings:
     get:
       summary: 'Get all ratings'

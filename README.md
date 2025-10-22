@@ -60,7 +60,7 @@ A full-stack bookstore management system built with Laravel 12 featuring a respo
 - **⭐ Rating System**
   - Submit ratings from 1 (poor) to 10 (excellent)
   - AJAX-powered author/book selection
-  - Real-time rating labels
+  - Dropdown-based rating input
   - Form validation
 
 - **📱 Responsive Design**
@@ -296,27 +296,82 @@ php artisan serve
 ### 🔌 API Documentation
 
 **📖 View Online Documentation:**
-- 🌐 **[Interactive API Docs](https://yourusername.github.io/bookstore/)** - Browse API endpoints with try-it-out feature
-- 📮 **[Postman Collection](https://yourusername.github.io/bookstore/collection.json)** - Download for Postman/Insomnia
-- 📋 **[OpenAPI/Swagger](https://yourusername.github.io/bookstore/openapi.yaml)** - OpenAPI 3.0 specification
 
-> **Note:** Replace `yourusername` with your actual GitHub username after deploying
+Choose one of these platforms to view the API documentation:
 
 <details>
-<summary><b>Setup GitHub Pages (for maintainers)</b></summary>
+<summary><b>Option 1: Netlify (Recommended)</b></summary>
 
-After pushing to GitHub, enable GitHub Pages:
+**Free static site hosting with drag & drop:**
 
-1. Go to repository **Settings** → **Pages**
-2. Under **Source**, select **Deploy from a branch**
-3. Select branch **main** and folder **/docs**
-4. Click **Save**
-5. Wait 1-2 minutes, your docs will be available at:
-   `https://yourusername.github.io/repositoryname/`
+1. Go to [Netlify Drop](https://app.netlify.com/drop)
+2. Drag and drop the `/docs` folder
+3. Get instant URL: `https://random-name.netlify.app`
+4. Update README with your URL
 
-Documentation files are auto-generated in the `/docs` folder.
+**Features:**
+- ✅ No account needed for testing
+- ✅ Instant deployment
+- ✅ Custom domain support
+- ✅ HTTPS by default
 
 </details>
+
+<details>
+<summary><b>Option 2: Vercel</b></summary>
+
+**Deploy from GitHub with auto-updates:**
+
+1. Go to [Vercel](https://vercel.com)
+2. Sign up with GitHub
+3. Import repository
+4. Set root directory to `docs`
+5. Deploy
+
+**URL:** `https://bookstore.vercel.app`
+
+</details>
+
+<details>
+<summary><b>Option 3: Surge.sh (CLI)</b></summary>
+
+**Simple CLI deployment:**
+
+```bash
+# Install Surge
+npm install -g surge
+
+# Deploy docs folder
+cd docs
+surge
+
+# Or with custom domain
+surge --domain bookstore-api.surge.sh
+```
+
+**URL:** `https://bookstore-api.surge.sh`
+
+</details>
+
+<details>
+<summary><b>Option 4: Render</b></summary>
+
+**Free static site hosting:**
+
+1. Go to [Render](https://render.com)
+2. Create new **Static Site**
+3. Connect GitHub repository
+4. Set publish directory to `docs`
+5. Deploy
+
+**URL:** `https://bookstore.onrender.com`
+
+</details>
+
+> **After deployment**, update these links with your actual URL:
+> - 🌐 **[Interactive API Docs](https://your-url-here/)** - Browse API endpoints
+> - 📮 **[Postman Collection](https://your-url-here/collection.json)** - Download for Postman
+> - 📋 **[OpenAPI Spec](https://your-url-here/openapi.yaml)** - OpenAPI 3.0
 
 <details>
 <summary><b>API Endpoints</b></summary>
@@ -438,7 +493,7 @@ Sistem manajemen toko buku lengkap yang dibangun dengan Laravel 12 yang menampil
 - **⭐ Sistem Rating**
   - Kirim rating dari 1 (buruk) hingga 10 (sempurna)
   - Pemilihan penulis/buku berbasis AJAX
-  - Label rating real-time
+  - Input rating menggunakan dropdown
   - Validasi formulir
 
 - **📱 Desain Responsif**
@@ -674,27 +729,82 @@ php artisan serve
 ### 🔌 Dokumentasi API
 
 **📖 Lihat Dokumentasi Online:**
-- 🌐 **[Dokumentasi API Interaktif](https://yourusername.github.io/bookstore/)** - Jelajahi endpoint API dengan fitur try-it-out
-- 📮 **[Postman Collection](https://yourusername.github.io/bookstore/collection.json)** - Download untuk Postman/Insomnia
-- 📋 **[OpenAPI/Swagger](https://yourusername.github.io/bookstore/openapi.yaml)** - Spesifikasi OpenAPI 3.0
 
-> **Catatan:** Ganti `yourusername` dengan username GitHub Anda setelah deploy
+Pilih salah satu platform untuk melihat dokumentasi API:
 
 <details>
-<summary><b>Setup GitHub Pages (untuk maintainer)</b></summary>
+<summary><b>Opsi 1: Netlify (Direkomendasikan)</b></summary>
 
-Setelah push ke GitHub, aktifkan GitHub Pages:
+**Hosting static site gratis dengan drag & drop:**
 
-1. Buka **Settings** repository → **Pages**
-2. Di bagian **Source**, pilih **Deploy from a branch**
-3. Pilih branch **main** dan folder **/docs**
-4. Klik **Save**
-5. Tunggu 1-2 menit, dokumentasi akan tersedia di:
-   `https://yourusername.github.io/repositoryname/`
+1. Buka [Netlify Drop](https://app.netlify.com/drop)
+2. Drag dan drop folder `/docs`
+3. Dapatkan URL instant: `https://random-name.netlify.app`
+4. Update README dengan URL Anda
 
-File dokumentasi otomatis di-generate di folder `/docs`.
+**Fitur:**
+- ✅ Tidak perlu akun untuk testing
+- ✅ Deployment instant
+- ✅ Support custom domain
+- ✅ HTTPS otomatis
 
 </details>
+
+<details>
+<summary><b>Opsi 2: Vercel</b></summary>
+
+**Deploy dari GitHub dengan auto-update:**
+
+1. Buka [Vercel](https://vercel.com)
+2. Sign up dengan GitHub
+3. Import repository
+4. Set root directory ke `docs`
+5. Deploy
+
+**URL:** `https://bookstore.vercel.app`
+
+</details>
+
+<details>
+<summary><b>Opsi 3: Surge.sh (CLI)</b></summary>
+
+**Deployment CLI sederhana:**
+
+```bash
+# Install Surge
+npm install -g surge
+
+# Deploy folder docs
+cd docs
+surge
+
+# Atau dengan custom domain
+surge --domain bookstore-api.surge.sh
+```
+
+**URL:** `https://bookstore-api.surge.sh`
+
+</details>
+
+<details>
+<summary><b>Opsi 4: Render</b></summary>
+
+**Hosting static site gratis:**
+
+1. Buka [Render](https://render.com)
+2. Buat **Static Site** baru
+3. Connect repository GitHub
+4. Set publish directory ke `docs`
+5. Deploy
+
+**URL:** `https://bookstore.onrender.com`
+
+</details>
+
+> **Setelah deployment**, update link berikut dengan URL Anda:
+> - 🌐 **[Dokumentasi API Interaktif](https://url-anda-disini/)** - Jelajahi endpoint API
+> - 📮 **[Postman Collection](https://url-anda-disini/collection.json)** - Download untuk Postman
+> - 📋 **[OpenAPI Spec](https://url-anda-disini/openapi.yaml)** - OpenAPI 3.0
 
 <details>
 <summary><b>Endpoint API</b></summary>
