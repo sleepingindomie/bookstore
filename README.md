@@ -329,6 +329,34 @@ php artisan serve
 | `POST` | `/api/ratings` | Submit rating |
 
 </details>
+
+<details>
+<summary><b>API Examples</b></summary>
+
+**Get Books (With Pagination)**
+```bash
+curl http://localhost:8000/api/books?per_page=10&page=1
+```
+
+**Search Books**
+```bash
+curl http://localhost:8000/api/books?q=Harry
+```
+
+**Get Top Authors**
+```bash
+curl http://localhost:8000/api/authors/top
+```
+
+**Submit Rating**
+```bash
+curl -X POST http://localhost:8000/api/ratings \
+  -H "Content-Type: application/json" \
+  -d '{"book_id": 1, "rating": 9}'
+```
+
+</details>
+
 ---
 
 ### 🤝 Contributing
@@ -626,6 +654,7 @@ php artisan serve
 
 > - 🌐 **[Dokumentasi API](https://sleepingindomie.github.io/bookstore/)** - Jelajahi endpoint API
 
+<details>
 <summary><b>Endpoint API</b></summary>
 
 #### Books
